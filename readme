@@ -1,0 +1,10 @@
+1.下載Python或者用anaconda
+2.pip install tensorflow-gpu
+3.查表下載對應CUDA和cuDNN
+4.这个时候就要验证一下CUDA是否安装好了，有以下几种检验方法
+第一种，是打开cmd，输入nvcc -V，显示如下，则CUDA安装成功。如果安装8.0版本就是v8.0....
+第二种，命令行中运行C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe，可以得到GPU运行时的监测界面，则CUDA安装成功
+5.運行一個模型訓練的程式，第一次加載要很久，結果訓練成功才行
+
+
+
