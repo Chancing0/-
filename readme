@@ -1,3 +1,4 @@
+# windows
 1.下載Python或者用anaconda
 2.pip install tensorflow-gpu
 3.查表下載對應CUDA和cuDNN
@@ -6,5 +7,51 @@
 第二种，命令行中运行C:\Program Files\NVIDIA Corporation\NVSMI\nvidia-smi.exe，可以得到GPU运行时的监测界面，则CUDA安装成功
 5.運行一個模型訓練的程式，第一次加載要很久，結果訓練成功才行
 
+#linux
+1.更新python或pip，如果需要的話，然後下載tensorflow-gpu
+注意：使用list 查看pip 和 pip3, 如果有則pip的tensorflow卸載掉，只留pip3的tf
+2.下載cuda9.0 和 cudnn 7.4.1 for cuda9.0
+3.安裝cuda的時候下載第一個runfile(local)，不要安裝顯卡驅動，其餘都yes
+cuda
+https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804
+與安裝文件目錄下  sudo sh cuda_9.1.85_387.26_linux.run
+4.然後分別添加路徑與.bashrch和enviomen
+
+我们需要在系统的PATH变量中加入/usr/local/cuda-8.0/bin, 否则系统没法找到nvcc的位置。
+
+并且，我们需要在文件~/.bashrc的末尾加入
+sudo nano ~/.bashrc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib/nvidia-367
+export CUDA_HOME=/usr/local/cuda
+export PATH=$PATH:/usr/local/cuda/bin
+然后用如下命令使得配置立刻生效:
+$ sudo source ~/.bashrc
+
+5.运行/usr/local/cuda-8.0/samples/1_Utilities/deviceQuery/deviceQuery来验证CUDA是否成功安装。
+  這會編譯很久，可以休息一下
+$ nvcc -V       会输出CUDA的版本信息
+$ nvidia-smi 可以查看顯卡驅動
+
+编译后的二进制文件 默认存放在NVIDIA_CUDA-9.0_Samples/bin中。
+接着在上一个终端中输入 ：$  cd /home/lxxx/NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release       其中xxx是你自己的用户名
+然后在终端输入 ：$ ./deviceQuery   
+Result = PASS代表成功,若失败 Result = FAIL
+
+# cuDNN
+
+下载完毕后，切到默认的Downloads文件夹，可以看到 cudnn-9.1-linux-x64-v7.tgz 压缩包
+與此處開啓終端機
+tar xvzf cudnn-8.0-linux-x64-v5.1-ga.tgz
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+
+# 進入python3
+Import tensorflow
+如錯：abs引入錯誤，則是有其他的tensorflow存在，于pip and pip3 全部卸載乾净，然後再裝tensorflow-gpu即可
 
 
+# caffe 安裝
+https://city.shaform.com/zh/2016/10/31/install-tensorflow-with-cuda/
+#本文紀錄了使用內顯來顯示畫面，而透過 Nvidia 顯卡來進行 CUDA 計算的安裝步驟。
+https://city.shaform.com/zh/2016/10/31/install-tensorflow-with-cuda/
