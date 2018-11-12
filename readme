@@ -50,7 +50,8 @@ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 Import tensorflow
 如錯：abs引入錯誤，則是有其他的tensorflow存在，于pip and pip3 全部卸載乾净，然後再裝tensorflow-gpu即可
 
-
+#jupyter
+python3 -m pip install jupyter
 # caffe 安裝
 https://city.shaform.com/zh/2016/10/31/install-tensorflow-with-cuda/
 #本文紀錄了使用內顯來顯示畫面，而透過 Nvidia 顯卡來進行 CUDA 計算的安裝步驟。
